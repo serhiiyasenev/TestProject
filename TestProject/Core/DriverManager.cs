@@ -18,7 +18,8 @@ namespace NUnitProject.Core
             options.AddArguments("--disable-extensions"); 
             options.AddArguments("--disable-gpu"); 
             options.AddArguments("--disable-dev-shm-usage"); 
-            options.AddArguments("--no-sandbox"); 
+            options.AddArguments("--no-sandbox");
+            options.AddArguments("--headless");
             var driver = new ChromeDriver(options);
             return driver;
         }
