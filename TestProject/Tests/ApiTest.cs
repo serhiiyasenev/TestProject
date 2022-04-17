@@ -1,12 +1,15 @@
 ﻿using NUnit.Framework;
-using NUnitProject.Models;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
-using static NUnitProject.Core.Helpers;
+using TestProject.Models;
+using TestProject.Tests.Base;
+using static TestProject.Core.Helpers;
 
-namespace NUnitProject.Tests
+namespace TestProject.Tests
 {
     [TestFixture]
-    class ApiTest 
+    class ApiTest : BaseTestAPI
     {
         [Test]
         [TestCase(0)]
@@ -16,9 +19,13 @@ namespace NUnitProject.Tests
         {
             // Arrange
             var expectedResult = calculatedValue ??= GetFactorial(enteredValue).ToString();
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("number", $"{enteredValue}")
+            });
 
             // Act
-            var response = await SendCalculateAsync(enteredValue.ToString(), "factorial");
+            var response = await HttpClient.SendPostAsync(content, "factorial");
             var actualResult = DeserializeObjectAsync<AnswerModel>(response).Answer;
 
             // Assert
@@ -32,8 +39,14 @@ namespace NUnitProject.Tests
         [TestCase("1.5", "Please enter an integer")]
         public async Task FactorialCalculatorNegative(string enteredValue, string expectedMessage)
         {
+            // Arrange
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("number", $"{enteredValue}")
+            });
+
             // Act
-            var response = await SendCalculateAsync(enteredValue, "factorial");
+            var response = await HttpClient.SendPostAsync(content, "factorial");
             var actualResult = DeserializeObjectAsync<AnswerModel>(response).Answer;
 
             // Assert

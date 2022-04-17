@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace NUnitProject.Core
+namespace TestProject.Core
 {
-    public class Helpers
+    public static class Helpers
     {
         public static T DeserializeObjectAsync<T>(string json)
         {
@@ -14,14 +12,8 @@ namespace NUnitProject.Core
             return model;
         }
 
-        public static async Task<string> SendCalculateAsync(string value, string requestUrl)
+        public static async Task<string> SendPostAsync(this HttpClient client, HttpContent content, string requestUrl)
         {
-            using var client = new HttpClient();
-            client.BaseAddress = new Uri(Urls.Base);
-            var content = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("number", $"{value}")
-            });
             var result = await client.PostAsync(requestUrl, content);
             return await result.Content.ReadAsStringAsync();
         }

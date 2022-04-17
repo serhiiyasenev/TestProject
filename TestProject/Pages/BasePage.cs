@@ -1,7 +1,7 @@
-﻿using NUnitProject.Core;
-using SeleniumExtras.PageObjects;
+﻿using SeleniumExtras.PageObjects;
+using TestProject.Core;
 
-namespace NUnitProject.Pages
+namespace TestProject.Pages
 {
     public class BasePage
     {

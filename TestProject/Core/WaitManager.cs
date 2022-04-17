@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using static NUnitProject.Core.DriverManager;
 using static SeleniumExtras.WaitHelpers.ExpectedConditions;
+using static TestProject.Core.DriverManager;
 
-namespace NUnitProject.Core
+namespace TestProject.Core
 {
     public static class WaitManager 
     {

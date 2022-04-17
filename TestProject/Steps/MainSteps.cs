@@ -1,7 +1,7 @@
-﻿using NUnitProject.Core;
-using NUnitProject.Pages;
+﻿using TestProject.Core;
+using TestProject.Pages;
 
-namespace NUnitProject.Steps
+namespace TestProject.Steps
 {
     public class MainSteps : BaseSteps
     {

@@ -1,11 +1,9 @@
 ﻿using NUnit.Framework;
-using NUnitProject.Core;
-[assembly: Parallelizable(ParallelScope.Children)]
-[assembly: LevelOfParallelism(10)]
+using TestProject.Core;
 
-namespace NUnitProject.Tests
+namespace TestProject.Tests.Base
 {
-    public class BaseTest
+    public class BaseTestUI : BaseTest
     {
         [SetUp]
         public void TestInitialize()

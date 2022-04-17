@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using System;
-using static NUnitProject.Core.DriverManager;
+using static TestProject.Core.DriverManager;
 
-namespace NUnitProject.Steps
+namespace TestProject.Steps
 {
     public class BaseSteps
     {

@@ -9,7 +9,7 @@
 
     <AssemblyName>TestProject</AssemblyName>
 
-    <RootNamespace>NUnitProject</RootNamespace>
+    <RootNamespace>TestProject</RootNamespace>
 
     <ApplicationIcon />
 

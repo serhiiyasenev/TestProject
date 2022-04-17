@@ -1,4 +1,4 @@
-﻿namespace NUnitProject.Core
+﻿namespace TestProject.Core
 {
     public static class Urls
     {

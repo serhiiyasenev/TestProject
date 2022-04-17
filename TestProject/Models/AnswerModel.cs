@@ -1,4 +1,4 @@
-﻿namespace NUnitProject.Models
+﻿namespace TestProject.Models
 {
     public class AnswerModel
     {

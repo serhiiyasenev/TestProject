@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using System.Threading;
 
-namespace NUnitProject.Core
+namespace TestProject.Core
 {
     public class DriverManager
     {

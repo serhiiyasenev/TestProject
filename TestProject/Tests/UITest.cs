@@ -1,11 +1,12 @@
 ﻿using NUnit.Framework;
-using NUnitProject.Steps;
-using static NUnitProject.Core.Helpers;
+using TestProject.Steps;
+using TestProject.Tests.Base;
+using static TestProject.Core.Helpers;
 
-namespace NUnitProject.Tests
+namespace TestProject.Tests
 {
     [TestFixture]
-    class UITest : BaseTest
+    class UITest : BaseTestUI
     {
         private readonly MainSteps _mainSteps;
 
