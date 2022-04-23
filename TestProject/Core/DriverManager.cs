@@ -10,6 +10,7 @@ namespace TestProject.Core
     {
         private static readonly ThreadLocal<IWebDriver> Pool = new();
         private static readonly object Thread = new();
+        private static readonly string Browser = Environment.GetEnvironmentVariable("Browser") ?? "Chrome";
 
         public static IWebDriver Driver
         {
@@ -17,8 +18,7 @@ namespace TestProject.Core
             {
                 lock (Thread)
                 {
-                    var browser = Environment.GetEnvironmentVariable("Browser") ?? "Chrome";
-                    return Pool.Value ??= GetWebDriver(browser);
+                    return Pool.Value ??= GetWebDriver(Browser);
                 }
             }
         }
