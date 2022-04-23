@@ -29,6 +29,7 @@ jobs:
       uses: browser-actions/setup-geckodriver@latest
     - name: Build
       run: dotnet build --no-restore
+    - name: Print variables
+      run: echo "Environment is '$Environment' and browser is '$Browser'"
     - name: Test
       run: dotnet test --filter FullyQualifiedName~Positive --no-build --verbosity normal
-           echo "Environment is $Environment and browser is $Browser"
