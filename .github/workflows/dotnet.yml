@@ -1,10 +1,14 @@
-name: .NET
+name: Build and run tests
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
+env:
+  Environment: Test
+  Browser: Chrome
 
 jobs:
   build:
@@ -21,7 +25,11 @@ jobs:
       run: dotnet restore
     - name: setup-chromedriver
       uses: nanasess/setup-chromedriver@master
+    - name: setup-firefox
+      uses: browser-actions/setup-geckodriver@latest
     - name: Build
       run: dotnet build --no-restore
+    - name: Print variables
+      run: echo "Environment is '$Environment' and browser is '$Browser'"
     - name: Test
       run: dotnet test --filter FullyQualifiedName~Positive --no-build --verbosity normal
