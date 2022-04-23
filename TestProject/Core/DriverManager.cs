@@ -7,8 +7,18 @@ namespace TestProject.Core
     public class DriverManager
     {
         private static readonly ThreadLocal<IWebDriver> Pool = new();
+        private static readonly object Thread = new();
 
-        public static IWebDriver Driver => Pool.Value ??= CreateDriver();
+        public static IWebDriver Driver
+        {
+            get
+            {
+                lock (Thread)
+                {
+                    return Pool.Value ??= CreateDriver();
+                }
+            }
+        }
 
         private static IWebDriver CreateDriver()
         {
@@ -31,10 +41,13 @@ namespace TestProject.Core
 
         public static void CloseDriver()
         {
-            if (Pool.Value != null)
+            lock (Thread)
             {
-                Pool.Value.Quit();
-                Pool.Value = null;
+                if (Pool.Value != null)
+                {
+                    Pool.Value.Quit();
+                    Pool.Value = null;
+                }
             }
         }
     }

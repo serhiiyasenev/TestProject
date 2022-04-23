@@ -9,22 +9,40 @@ namespace TestProject.Tests.Base
     public class BaseTestAPI : BaseTest
     {
         private ThreadLocal<HttpClient> _httpClientPool;
+        private static readonly object Thread = new();
 
-        protected HttpClient HttpClient => _httpClientPool.Value ??= CreateHttpClient();
+        protected HttpClient HttpClient
+        {
+            get
+            {
+                lock (Thread)
+                {
+                    return _httpClientPool.Value ??= CreateHttpClient();
+                }
+            }
+        }
+
+
 
         [SetUp]
         public void TestInitialize()
         {
-            _httpClientPool = new ThreadLocal<HttpClient>();
+            lock (Thread)
+            {
+                _httpClientPool = new ThreadLocal<HttpClient>();
+            }
         }
 
         [TearDown]
         public void TestFinalize()
         {
-            if (_httpClientPool.Value != null)
+            lock (Thread)
             {
-                _httpClientPool.Value.Dispose();
-                _httpClientPool.Value = null;
+                if (_httpClientPool.Value != null)
+                {
+                    _httpClientPool.Value.Dispose();
+                    _httpClientPool.Value = null;
+                }
             }
         }
 
