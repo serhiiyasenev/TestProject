@@ -8,7 +8,7 @@ on:
 
 env:
   Environment: Test
-  Browser: Chrome
+  Browser: Firefox
 
 jobs:
   build:
