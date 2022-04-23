@@ -17,9 +17,6 @@ namespace TestProject.Core
             {
                 lock (Thread)
                 {
-                    Console.WriteLine("=====================================");
-                    Console.WriteLine($"Environment.GetEnvironmentVariable RESULT is '{Environment.GetEnvironmentVariable("Browser")}'");
-                    Console.WriteLine("=====================================");
                     var browser = Environment.GetEnvironmentVariable("Browser") ?? "Chrome";
                     return Pool.Value ??= GetWebDriver(browser);
                 }
