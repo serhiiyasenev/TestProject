@@ -1,23 +1,21 @@
 ﻿using Core;
 using NUnit.Framework;
-using System;
-using System.Net.Http;
 using System.Threading;
 
 namespace TestProject.Tests.Base
 {
     public class BaseTestAPI : BaseTest
     {
-        private ThreadLocal<HttpClient> _httpClientPool;
+        private ThreadLocal<HttpClientManager> _httpClientPool;
         private static readonly object Thread = new();
 
-        protected HttpClient HttpClient
+        protected HttpClientManager HttpClient
         {
             get
             {
                 lock (Thread)
                 {
-                    return _httpClientPool.Value ??= CreateHttpClient();
+                    return _httpClientPool.Value ??= new HttpClientManager();
                 }
             }
         }
@@ -29,7 +27,7 @@ namespace TestProject.Tests.Base
         {
             lock (Thread)
             {
-                _httpClientPool = new ThreadLocal<HttpClient>();
+                _httpClientPool = new ThreadLocal<HttpClientManager>();
             }
         }
 
@@ -46,16 +44,5 @@ namespace TestProject.Tests.Base
             }
         }
 
-        private HttpClient CreateHttpClient()
-        {
-            _httpClientPool = new ThreadLocal<HttpClient>
-            {
-                Value = new HttpClient
-                {
-                    BaseAddress = new Uri(Urls.Base)
-                }
-            };
-            return _httpClientPool.Value;
-        }
     }
 }

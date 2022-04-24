@@ -8,7 +8,7 @@ namespace Core.Utilities
 {
     public static class Logger
     {
-        private static readonly string LogTo = Environment.GetEnvironmentVariable("LogTo") ?? "ReportPortal";
+        private static readonly string LogTo = Environment.GetEnvironmentVariable("LogTo") ?? "Console";
 
         static Logger()
         {

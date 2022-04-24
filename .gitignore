@@ -1,3 +1,10 @@
 bin/
+Bin/
 obj/
 .vs/
+TestResults/
+packages/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates

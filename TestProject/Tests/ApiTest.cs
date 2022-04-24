@@ -1,8 +1,6 @@
 ﻿using Business.Models;
-using Core.Utilities;
+using Core;
 using NUnit.Framework;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using TestProject.Tests.Base;
 using static Core.Utilities.Helpers;
@@ -20,17 +18,14 @@ namespace TestProject.Tests
         {
             // Arrange
             var expectedResult = calculatedValue ??= GetFactorial(enteredValue).ToString();
-            var content = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("number", $"{enteredValue}")
-            });
+            var content = HttpClientManager.CreateContent(enteredValue.ToString());
 
             // Act
-            var response = await HttpClient.SendPostAsync(content, "factorial");
-            var actualResult = DeserializeObjectAsync<AnswerModel>(response).Answer;
+            var response = await HttpClient.PostAsync("factorial", content);
+            var actualResult = await HttpClient.DeserializeObjectAsync<AnswerModel>(response);
 
             // Assert
-            Assert.AreEqual(expectedResult, actualResult, $"Actual result of factorial calculation '{actualResult}' is not equal to expected '{calculatedValue}'");
+            Assert.AreEqual(expectedResult, actualResult.Answer, $"Actual result of factorial calculation '{actualResult}' is not equal to expected '{calculatedValue}'");
         }
 
         [Test]
@@ -41,17 +36,16 @@ namespace TestProject.Tests
         public async Task FactorialCalculatorNegative(string enteredValue, string expectedMessage)
         {
             // Arrange
-            var content = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("number", $"{enteredValue}")
-            });
+            var content = HttpClientManager.CreateContent(enteredValue);
 
             // Act
-            var response = await HttpClient.SendPostAsync(content, "factorial");
-            var actualResult = DeserializeObjectAsync<AnswerModel>(response).Answer;
+            var response = await HttpClient.PostAsync("factorial", content);
+            var actualResult = await HttpClient.DeserializeObjectAsync<AnswerModel>(response);
 
             // Assert
-            Assert.AreEqual(expectedMessage, actualResult, "Result of preliminary checks before settlements is not equal to expected");
+            Assert.AreEqual(expectedMessage, actualResult.Answer, "Result of preliminary checks before settlements is not equal to expected");
         }
+
+        
     }
 }
