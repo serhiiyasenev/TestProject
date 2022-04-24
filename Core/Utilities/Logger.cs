@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using ReportPortal.Serilog;
+using Serilog;
 using Serilog.Events;
 using System;
 using System.IO;
@@ -7,7 +8,7 @@ namespace Core.Utilities
 {
     public static class Logger
     {
-        private static readonly string LogTo = Environment.GetEnvironmentVariable("LogTo") ?? "Console";
+        private static readonly string LogTo = Environment.GetEnvironmentVariable("LogTo") ?? "ReportPortal";
 
         static Logger()
         {
@@ -25,6 +26,13 @@ namespace Core.Utilities
                         .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                         .Enrich.FromLogContext()
                         .WriteTo.Console()
+                        .CreateLogger();
+                    break;
+                case "ReportPortal":
+                    Log.Logger = new LoggerConfiguration()
+                        .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                        .Enrich.FromLogContext()
+                        .WriteTo.ReportPortal()
                         .CreateLogger();
                     break;
                 default:

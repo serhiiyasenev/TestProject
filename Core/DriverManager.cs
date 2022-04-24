@@ -13,7 +13,6 @@ namespace Core
     {
         private static readonly ThreadLocal<IWebDriver> Pool = new();
         
-
         public static IWebDriver Driver => Pool.Value ??= GetWebDriver(Context.Browser);
 
         private static IWebDriver GetWebDriver(Browser browser)
