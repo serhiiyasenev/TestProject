@@ -45,7 +45,7 @@ namespace TestProject.Core
 
         public static void LogError(string info)
         {
-            Log.Information("==========ERROR==========");
+            Log.Error("==========ERROR==========");
             Log.Error(info);
         }
     }
