@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using TestProject.Core;
 using TestProject.Steps;
 using TestProject.Tests.Base;
 using static TestProject.Core.Helpers;
@@ -23,6 +24,8 @@ namespace TestProject.Tests
         [TestCase(101, "9.42594775983836e+159")]
         public void FactorialCalculatorPositive(int enteredValue, string calculatedValue = null)
         {
+            Logger.LogInformation($"FactorialCalculatorPositive `{enteredValue}` started");
+
             // Arrange
             _mainSteps.SetValueForCalculation(enteredValue.ToString());
             calculatedValue ??= GetFactorial(enteredValue).ToString();

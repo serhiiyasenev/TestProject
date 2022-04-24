@@ -15,6 +15,9 @@ namespace TestProject.Tests.Base
         public void TestFinalize()
         {
             DriverManager.CloseDriver();
+            ProcessHelper.KillAllProcesses("chromedriver");
+            ProcessHelper.KillAllProcesses("geckodriver");
         }
+
     }
 }

@@ -8,5 +8,10 @@ namespace TestProject.Tests.Base
     public class BaseTest
     {
 
+        public BaseTest()
+        {
+
+        }
+
     }
 }

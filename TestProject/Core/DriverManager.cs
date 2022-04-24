@@ -10,7 +10,7 @@ namespace TestProject.Core
     {
         private static readonly ThreadLocal<IWebDriver> Pool = new();
         private static readonly object Thread = new();
-        private static readonly string Browser = Environment.GetEnvironmentVariable("Browser") ?? "Chrome";
+        private static readonly string Browser = Environment.GetEnvironmentVariable("Browser") ?? "Firefox";
 
         public static IWebDriver Driver
         {
@@ -25,9 +25,7 @@ namespace TestProject.Core
 
         private static IWebDriver GetWebDriver(string browser)
         {
-            Console.WriteLine("=====================================");
-            Console.WriteLine($"GetWebDriver for Browser '{browser}'");
-            Console.WriteLine("=====================================");
+            Logger.LogInformation($"GetWebDriver for Browser '{browser}'");
 
             return browser switch
             {
