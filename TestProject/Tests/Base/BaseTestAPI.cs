@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using Core;
+using NUnit.Framework;
 using System;
 using System.Net.Http;
 using System.Threading;
-using TestProject.Core;
 
 namespace TestProject.Tests.Base
 {

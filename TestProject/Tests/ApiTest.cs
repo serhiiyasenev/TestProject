@@ -1,10 +1,11 @@
-﻿using NUnit.Framework;
+﻿using Business.Models;
+using Core.Utilities;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using TestProject.Models;
 using TestProject.Tests.Base;
-using static TestProject.Core.Helpers;
+using static Core.Utilities.Helpers;
 
 namespace TestProject.Tests
 {

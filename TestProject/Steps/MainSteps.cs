@@ -1,5 +1,5 @@
-﻿using TestProject.Core;
-using TestProject.Pages;
+﻿using Business.Pages;
+using Core;
 
 namespace TestProject.Steps
 {

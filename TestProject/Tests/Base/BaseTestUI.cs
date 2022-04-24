@@ -1,5 +1,6 @@
-﻿using NUnit.Framework;
-using TestProject.Core;
+﻿using Core;
+using Core.Utilities;
+using NUnit.Framework;
 
 namespace TestProject.Tests.Base
 {

@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
-using TestProject.Core;
+﻿using Core.Utilities;
+using NUnit.Framework;
 using TestProject.Steps;
 using TestProject.Tests.Base;
-using static TestProject.Core.Helpers;
+using static Core.Utilities.Helpers;
 
 namespace TestProject.Tests
 {
