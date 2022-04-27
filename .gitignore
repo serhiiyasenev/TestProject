@@ -8,3 +8,10 @@ packages/
 *.user
 *.userosscache
 *.sln.docstates
+*.csproj.*
+**/obj/*
+*.DotSettings.user
+*.cd
+!packages/repositories.config
+packages/
+data/
