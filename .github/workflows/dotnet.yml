@@ -9,6 +9,7 @@ on:
 env:
   Environment: Test
   Browser: Chrome
+  BrowserHeadless: true
 
 jobs:
   build:

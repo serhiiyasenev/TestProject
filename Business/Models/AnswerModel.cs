@@ -1,4 +1,4 @@
-﻿namespace TestProject.Models
+﻿namespace Business.Models
 {
     public class AnswerModel
     {

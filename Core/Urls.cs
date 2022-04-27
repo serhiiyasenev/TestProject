@@ -1,4 +1,4 @@
-﻿namespace TestProject.Core
+﻿namespace Core
 {
     public static class Urls
     {

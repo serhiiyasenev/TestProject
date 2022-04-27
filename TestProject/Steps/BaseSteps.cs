@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using System;
-using static TestProject.Core.DriverManager;
+using static Core.DriverManager;
 
 namespace TestProject.Steps
 {

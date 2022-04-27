@@ -1,7 +1,7 @@
-﻿using SeleniumExtras.PageObjects;
-using TestProject.Core;
+﻿using Core;
+using SeleniumExtras.PageObjects;
 
-namespace TestProject.Pages
+namespace Business.Pages
 {
     public class BasePage
     {

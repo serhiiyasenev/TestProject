@@ -1,5 +1,6 @@
-﻿using NUnit.Framework;
-using TestProject.Core;
+﻿using Core;
+using Core.Utilities;
+using NUnit.Framework;
 
 namespace TestProject.Tests.Base
 {
@@ -15,6 +16,13 @@ namespace TestProject.Tests.Base
         public void TestFinalize()
         {
             DriverManager.CloseDriver();
+        }
+
+        [OneTimeTearDown]
+        public void RunFinalize()
+        {
+            ProcessHelper.KillAllProcesses("chromedriver");
+            ProcessHelper.KillAllProcesses("geckodriver");
         }
     }
 }

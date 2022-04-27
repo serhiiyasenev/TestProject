@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
-namespace TestProject.Pages
+namespace Business.Pages
 {
     public class MainPage : BasePage
     {
