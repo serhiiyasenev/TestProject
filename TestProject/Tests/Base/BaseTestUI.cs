@@ -21,8 +21,8 @@ namespace TestProject.Tests.Base
         [OneTimeTearDown]
         public void RunFinalize()
         {
-            Helpers.KillAllProcesses("chromedriver");
-            Helpers.KillAllProcesses("geckodriver");
+            ProcessHelper.KillAllProcesses("chromedriver");
+            ProcessHelper.KillAllProcesses("geckodriver");
         }
     }
 }

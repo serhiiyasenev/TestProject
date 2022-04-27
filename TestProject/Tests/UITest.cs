@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using TestProject.Steps;
 using TestProject.Tests.Base;
-using static Core.Utilities.Helpers;
+using static Core.Utilities.MathHelper;
 
 namespace TestProject.Tests
 {

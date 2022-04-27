@@ -3,7 +3,7 @@ using Core;
 using NUnit.Framework;
 using System.Threading.Tasks;
 using TestProject.Tests.Base;
-using static Core.Utilities.Helpers;
+using static Core.Utilities.MathHelper;
 
 namespace TestProject.Tests
 {
