@@ -49,7 +49,8 @@ namespace Core
                 Method     = HttpMethod.Post
             };
 
-            return await SendAsync(request);
+            var response = await SendAsync(request);
+            return response.EnsureSuccessStatusCode();
         }
 
         public static FormUrlEncodedContent CreateContent(string enteredValue)
