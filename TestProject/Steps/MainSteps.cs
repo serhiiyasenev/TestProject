@@ -5,6 +5,7 @@ namespace TestProject.Steps
 {
     public class MainSteps : BaseSteps
     {
+        //upd
         MainPage MainPage => new();
 
         public void SetValueForCalculation(string value)
