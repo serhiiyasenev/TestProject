@@ -32,5 +32,7 @@ jobs:
       run: dotnet build --no-restore
     - name: Print variables
       run: echo "Environment is '$Environment' and browser is '$Browser'"
-    - name: Test
+    - name: Unit Test
+      run: dotnet test --filter FullyQualifiedName~UnitTests --no-build --verbosity normal
+    - name: UI Test
       run: dotnet test --filter FullyQualifiedName~Positive --no-build --verbosity normal
