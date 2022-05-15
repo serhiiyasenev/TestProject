@@ -34,5 +34,5 @@ jobs:
       run: echo "Environment is '$Environment' and browser is '$Browser'"
     - name: Unit Test
       run: dotnet test --filter FullyQualifiedName~UnitTests --no-build --verbosity normal
-    - name: UI Test
+    - name: E2E Test
       run: dotnet test --filter FullyQualifiedName~Positive --no-build --verbosity normal
