@@ -30,6 +30,8 @@ namespace Core
 
         private static IWebDriver CreateChromeDriver()
         {
+            Logger.LogInformation($"Context.BrowserHeadless is '{Context.BrowserHeadless}'");
+
             var options = new ChromeOptions { UnhandledPromptBehavior = UnhandledPromptBehavior.Ignore };
             options.AddArgument("--disable-web-security");
             options.AddArgument("start-maximized"); 
