@@ -1,6 +1,11 @@
 ﻿using Core;
 using Core.Utilities;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
+using OpenQA.Selenium;
+using System;
+using System.IO;
+using static NUnit.Framework.TestContext;
 
 namespace TestProject.Tests.Base
 {
@@ -15,7 +20,15 @@ namespace TestProject.Tests.Base
         [TearDown]
         public void TestFinalize()
         {
+            if (CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            {
+                var screenshot = ((ITakesScreenshot)DriverManager.Driver).GetScreenshot();
+                var fileName = Path.Combine(Environment.CurrentDirectory, $"{CurrentContext.Test.MethodName}_{CurrentContext.Test.ID}_{DateTime.UtcNow.Ticks}.jpg");
+                screenshot.SaveAsFile(fileName, ScreenshotImageFormat.Jpeg);
+                AddTestAttachment(fileName);
+            }
             DriverManager.CloseDriver();
+            
         }
 
         [OneTimeTearDown]
