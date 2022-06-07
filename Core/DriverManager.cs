@@ -2,6 +2,7 @@
 using Core.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using System;
 using System.Threading;
@@ -18,20 +19,19 @@ namespace Core
         private static IWebDriver GetWebDriver(Browser browser)
         {
             Logger.LogInformation($"GetWebDriver for Browser '{browser}'");
+            Logger.LogInformation($"Context.BrowserHeadless is '{Context.BrowserHeadless}'");
 
             return browser switch
             {
-                Chrome => CreateChromeDriver(),
+                Edge    => CreateEdgeDriver(),
+                Chrome  => CreateChromeDriver(),
                 Firefox => CreateFirefoxDriver(),
-                //Edge => TBD,
                 _ => throw new ArgumentOutOfRangeException(nameof(browser), browser, "Unsupported browser")
             };
         }
 
         private static IWebDriver CreateChromeDriver()
         {
-            Logger.LogInformation($"Context.BrowserHeadless is '{Context.BrowserHeadless}'");
-
             var options = new ChromeOptions { UnhandledPromptBehavior = UnhandledPromptBehavior.Ignore };
             options.AddArgument("--disable-web-security");
             options.AddArgument("start-maximized"); 
@@ -60,6 +60,25 @@ namespace Core
             if (Context.BrowserHeadless) options.AddArgument("--headless");
             var driver = new FirefoxDriver(options);
             driver.Manage().Window.Maximize();
+            return driver;
+        }
+
+        private static IWebDriver CreateEdgeDriver()
+        {
+            var options = new EdgeOptions { UnhandledPromptBehavior = UnhandledPromptBehavior.Ignore };
+            options.AddArgument("--disable-web-security");
+            options.AddArgument("start-maximized");
+            options.AddArgument("disable-infobars");
+            options.AddArgument("--disable-extensions");
+            options.AddArgument("--disable-popup-blocking");
+            options.AddArgument("--disable-gpu");
+            options.AddArgument("--disable-dev-shm-usage");
+            options.AddArgument("--ignore-certificate-errors");
+            options.AddArgument("--no-sandbox");
+            if (Context.BrowserHeadless) options.AddArgument("--headless");
+            options.AddUserProfilePreference("download.prompt_for_download", false);
+            options.AddUserProfilePreference("safebrowsing.enabled", false);
+            var driver = new EdgeDriver(options);
             return driver;
         }
 
