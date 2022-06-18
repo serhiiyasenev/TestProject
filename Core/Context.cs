@@ -22,7 +22,7 @@ namespace Core
 
             BrowserHeadless = !string.IsNullOrEmpty(GetEnvironmentVariable("BrowserHeadless"))
                 ? bool.Parse(GetEnvironmentVariable("BrowserHeadless"))
-                : true;
+                : false;
         }
     }
 }

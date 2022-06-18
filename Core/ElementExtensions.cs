@@ -60,7 +60,7 @@ namespace Core
 
         public static object GetValueFromControl(this IWebElement element)
         {
-            return JavaScriptExecutor.ExecuteScript("return arguments[0].value;", element);
+            return JavaScriptExecutor.ExecuteScript("return arguments[0].innerText;", element);
         }
     }
 }
