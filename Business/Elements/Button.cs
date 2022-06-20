@@ -1,13 +1,10 @@
 ﻿using Core;
-using OpenQA.Selenium;
 
 namespace Business.Elements
 {
-    public class Button : IWrapsElement
+    public class Button : Element
     {
-        public IWebElement WrappedElement { get; set; }
-
-        public void Click()
+        public override void Click()
         {
             WrappedElement.Click();
         }

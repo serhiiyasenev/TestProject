@@ -15,7 +15,7 @@ namespace TestProject.Steps
 
         public void Calculate()
         {
-            MainPage.CalculateButton.WrappedElement.WaitForElementToBeClickable(5);
+            MainPage.CalculateButton.WaitForElementToBeClickable(5);
             MainPage.CalculateButton.Click();
             WaitManager.WaitForPageReady();
         }
