@@ -16,6 +16,8 @@ namespace Core
         
         public static IWebDriver Driver => Pool.Value ??= GetWebDriver(Context.Browser);
 
+        public static IJavaScriptExecutor JavaScriptExecutor => (IJavaScriptExecutor)Driver;
+
         private static IWebDriver GetWebDriver(Browser browser)
         {
             Logger.LogInformation($"GetWebDriver for Browser '{browser}'");

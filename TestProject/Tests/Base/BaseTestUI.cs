@@ -28,7 +28,6 @@ namespace TestProject.Tests.Base
                 AddTestAttachment(fileName);
             }
             DriverManager.CloseDriver();
-            
         }
 
         [OneTimeTearDown]
