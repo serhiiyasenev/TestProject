@@ -17,17 +17,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
     - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: setup-chromedriver
-      uses: nanasess/setup-chromedriver@master
+      uses: nanasess/setup-chromedriver@904b949d6a9e6f5bb87b61ba516e716ddcc1ff8c
     - name: setup-firefox
-      uses: browser-actions/setup-geckodriver@latest
+      uses: browser-actions/setup-geckodriver@fac5b0424c584257f32cf12c5eb4ba86014c34f8
     - name: Build
       run: dotnet build --no-restore
     - name: Print variables
