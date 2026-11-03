@@ -2,7 +2,6 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using static Core.DriverManager;
-using static SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace Core
 {
@@ -11,19 +10,23 @@ namespace Core
         public static IWebElement WaitForElementToBeClickable(this IWebElement element, int seconds)
         {
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(seconds));
-            return wait.Until(ElementToBeClickable(element));
+            return wait.Until(_ =>
+            {
+                try { return element.Displayed && element.Enabled ? element : null; }
+                catch (StaleElementReferenceException) { return null; }
+            });
         }
 
         public static void WaitForTextInElementValue(this IWebElement element, string expectedText, int seconds)
         {
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(seconds));
-            wait.Until(TextToBePresentInElementValue(element, expectedText));
+            wait.Until(_ => (element.GetAttribute("value") ?? string.Empty).Contains(expectedText));
         }
 
         public static void WaitForTextInElement(this IWebElement element, string expectedText, int seconds)
         {
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(seconds));
-            wait.Until(TextToBePresentInElement(element, expectedText));
+            wait.Until(_ => element.Text.Contains(expectedText));
         }
 
         public static void WaitForPageReady()
