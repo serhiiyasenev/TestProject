@@ -41,6 +41,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Set up Java 17 for SonarScanner
+        uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: '17'
       - name: Analyze with SonarCloud         
 
         # You can pin the exact commit or the version.
