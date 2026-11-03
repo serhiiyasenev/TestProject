@@ -23,8 +23,8 @@ namespace TestProject.Tests.Base
             if (CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
                 var screenshot = ((ITakesScreenshot)DriverManager.Driver).GetScreenshot();
-                var fileName = Path.Combine(Environment.CurrentDirectory, $"{CurrentContext.Test.MethodName}_{Context.Environment}_{DateTime.UtcNow.Ticks}.jpg");
-                screenshot.SaveAsFile(fileName, ScreenshotImageFormat.Jpeg);
+                var fileName = Path.Combine(Environment.CurrentDirectory, $"{CurrentContext.Test.MethodName}_{Context.Environment}_{DateTime.UtcNow.Ticks}.png");
+                screenshot.SaveAsFile(fileName);
                 AddTestAttachment(fileName);
             }
             DriverManager.CloseDriver();
