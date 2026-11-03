@@ -1,18 +1,18 @@
 ﻿using Business.Elements;
 using OpenQA.Selenium;
-using SeleniumExtras.PageObjects;
+using Core;
 
 namespace Business.Pages
 {
     public class MainPage : BasePage
     {
-        [FindsBy(How = How.XPath, Using = "//input[@id='number']")]
-        public IWebElement InputField { get; private set; }
+        public IWebElement InputField => DriverManager.Driver.FindElement(By.Id("number"));
 
-        [FindsBy(How = How.XPath, Using = "//button[@id='getFactorial']")]
-        public Button CalculateButton { get; private set; }
+        public Button CalculateButton => new Button
+        {
+            WrappedElement = DriverManager.Driver.FindElement(By.Id("getFactorial"))
+        };
 
-        [FindsBy(How = How.XPath, Using = "//p[@id='resultDiv']")]
-        public IWebElement ResultLabel { get; private set; }
+        public IWebElement ResultLabel => DriverManager.Driver.FindElement(By.Id("resultDiv"));
     }
 }
